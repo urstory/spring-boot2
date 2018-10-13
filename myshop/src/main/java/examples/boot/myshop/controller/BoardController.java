@@ -1,10 +1,7 @@
 package examples.boot.myshop.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 // http://localhost:8080/boards?page=2
 @Controller
@@ -37,5 +34,22 @@ public class BoardController {
     ){
         System.out.println("boardId :" + boardId);
         return "view"; // view name을 리턴한다. view.jsp 를 만들어줘야한다.
+    }
+
+    @GetMapping(path = "/write")
+    public String writeform(){
+        return "writeform"; // 이름, 제목, 내용을 입력하는 폼을 작성해주세요.
+    }
+
+    @PostMapping
+    public String write(
+            @RequestParam(name = "name", required = true) String name,
+            @RequestParam(name = "title", required = true) String title,
+            @RequestParam(name = "content", required = true) String content
+    ){
+        System.out.println("name : " + name);
+        System.out.println("title : " + title);
+        System.out.println("content : " + content);
+        return "redirect:/boards"; // write jsp 를 보여준다.
     }
 }
