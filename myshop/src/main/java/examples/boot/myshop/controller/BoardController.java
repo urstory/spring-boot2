@@ -1,5 +1,6 @@
 package examples.boot.myshop.controller;
 
+import examples.boot.myshop.utils.ServerInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,10 +16,15 @@ public class BoardController {
     //  파라미터 searchStr  2개의 파라미터는 반드시 필요한 것은 아니다. String type
     @GetMapping
     public String list(
+            ServerInfo serverInfo,
             @RequestParam(name = "page", required = false, defaultValue = "1") int page,
             @RequestParam(name = "searchKind", required = false) String searchKind,
             @RequestParam(name = "searchStr", required = false) String searchStr
     ){
+        if(serverInfo != null) {
+            System.out.println(serverInfo.getIp());
+            System.out.println(serverInfo.getPort());
+        }
         System.out.println("page : " + page);
         System.out.println("searchKind : " + searchKind);
         System.out.println("searchStr : " + searchStr);
