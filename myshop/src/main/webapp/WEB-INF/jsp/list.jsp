@@ -5,7 +5,16 @@
     <title>List</title>
 </head>
 <body>
-    List !!
+<h1>List !!</h1>
+
+제목, 이름, 조회수 <br>
+<a href="/boards/1"> 1번 게시물 </a> , 홍길동, 1<br>
+<a href="/boards/2?page=2&searchKind=&searchStr="> 2번 게시물 </a> , 홍길동, 1<br>
+<a href="/boards/3"> 3번 게시물 </a> , 홍길동, 1<br>
+<a href="/boards/4"> 4번 게시물 </a> , 홍길동, 1<br>
+<a href="/boards/5"> 5번 게시물 </a> , 홍길동, 1<br>
+
+이전페이지  &nbsp; &nbsp; &nbsp;  이후페이지 &nbsp;&nbsp; 글쓰기
 </body>
 </html>
 
