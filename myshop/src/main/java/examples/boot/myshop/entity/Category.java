@@ -16,7 +16,8 @@ public class Category {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER) // Board엔티티의 필드명.
+//    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER) // Board엔티티의 필드명.
+    @OneToMany(mappedBy = "category")
     private List<Board> boards;
 
     public List<Board> getBoards(){

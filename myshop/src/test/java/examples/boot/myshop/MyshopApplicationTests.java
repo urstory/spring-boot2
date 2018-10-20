@@ -2,6 +2,7 @@ package examples.boot.myshop;
 
 import examples.boot.myshop.entity.Board;
 import examples.boot.myshop.entity.Category;
+import examples.boot.myshop.repository.BoardRepository;
 import examples.boot.myshop.repository.CategoryRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +19,9 @@ import java.util.List;
 public class MyshopApplicationTests {
 	@Autowired
 	CategoryRepository categoryRepository; // test할 대상을 주입받는다.
+
+	@Autowired
+	BoardRepository boardRepository;
 
 	@Test
 	public void contextLoads() {
@@ -47,5 +51,31 @@ public class MyshopApplicationTests {
 		}
 
 		System.out.println("---------------------------------");
+	}
+
+	@Test
+	public void test3(){
+		List<Board> list = boardRepository.findAllByName("kim");
+		for(Board board : list){
+			System.out.println(board.getTitle());
+		}
+	}
+
+	@Test
+	public void test4(){
+		List<Board> list = boardRepository.findAll();
+		for(Board board : list){
+			System.out.println(board.getTitle());
+			System.out.println(board.getCategory().getName());
+		};
+	}
+
+	@Test
+	public void test5(){
+		List<Board> list = boardRepository.getBoards();
+		for(Board board : list){
+			System.out.println(board.getTitle());
+			System.out.println(board.getCategory().getName());
+		};
 	}
 }
