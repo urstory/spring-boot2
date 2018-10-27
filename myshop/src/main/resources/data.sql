@@ -16,10 +16,10 @@ insert into member_role (id , name) values (1, 'USER');
 insert into member_role (id , name) values (2, 'ADMIN');
 
 insert into member(id, name, email, password, regdate)
-values(1, 'kim', 'urstory@gmail.com', '1234', now());
+values(1, 'kim', 'urstory@gmail.com', '{bcrypt}$2a$10$G5E3.paSJfHL1iG/Ccy.meLL2eu4I1S22nqqpShxYYU1QnNFzkiP2', now());
 
 insert into member(id, name, email, password, regdate)
-values(2, 'kang', 'carami@gmail.com', '1234', now());
+values(2, 'kang', 'carami@gmail.com', '{bcrypt}$2a$10$G5E3.paSJfHL1iG/Ccy.meLL2eu4I1S22nqqpShxYYU1QnNFzkiP2', now());
 
 insert into member_member_role(member_id, member_role_id)
 values(1, 1);
