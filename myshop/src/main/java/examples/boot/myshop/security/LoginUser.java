@@ -28,4 +28,8 @@ public class LoginUser extends User {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getEmail(){
+        return this.getUsername();
+    }
 }
