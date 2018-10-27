@@ -1,0 +1,12 @@
+Spring Security 를 이용.
+
+    - 회원정보(id, password)
+    - Role에 대한정보.
+
+회원   ------->  Role
+      *       *
+
+회원가입
+로그인
+로그아웃
+

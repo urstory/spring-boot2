@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,5 +24,13 @@ public class Category {
     public List<Board> getBoards(){
         System.out.println("getBoards!!!!!!!!");
         return boards;
+    }
+
+    // helper
+    public void addBoard(Board board){
+        if(boards == null)
+            boards = new ArrayList<>();
+        board.setCategory(this);
+        boards.add(board);
     }
 }
