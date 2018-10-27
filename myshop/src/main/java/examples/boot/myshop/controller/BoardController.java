@@ -1,13 +1,9 @@
 package examples.boot.myshop.controller;
 
+import examples.boot.myshop.security.AuthUser;
 import examples.boot.myshop.security.LoginUser;
-import examples.boot.myshop.utils.ServerInfo;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.Principal;
 
 // http://localhost:8080/boards?page=2
 @Controller
@@ -21,13 +17,14 @@ public class BoardController {
     //  파라미터 searchStr  2개의 파라미터는 반드시 필요한 것은 아니다. String type
     @GetMapping
     public String list(
+            @AuthUser LoginUser loginUser,
             @RequestParam(name = "page", required = false, defaultValue = "1") int page,
             @RequestParam(name = "searchKind", required = false) String searchKind,
             @RequestParam(name = "searchStr", required = false) String searchStr
     ){
-
-        LoginUser loginUser = (LoginUser)SecurityContextHolder
-                .getContext().getAuthentication().getPrincipal();
+//
+//        LoginUser loginUser = (LoginUser)SecurityContextHolder
+//                .getContext().getAuthentication().getPrincipal();
         if(loginUser != null){
             System.out.println("----------------------");
             System.out.println(loginUser.getId());
