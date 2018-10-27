@@ -62,7 +62,7 @@ public class WebApplicationSecurity
                     .ignoringAntMatchers("/**")// h2-console을 사용하려면 post방식으로 값을 전달할 때 csrf를 무시
                 .and()
                     .formLogin() // 로그인 설정
-                        .loginPage("/members/login") // 보여줄 view 에대한 설정
+                        .loginPage("/members/login") // Controller 에서 해당 path를 처리한다.
                             .usernameParameter("id") // <input name="id"
                             .passwordParameter("password") // <input name="password"
                     .loginProcessingUrl("/members/login"); // id, password를 PoST방식으로 전달받은 경로, 필터가 받는다.
