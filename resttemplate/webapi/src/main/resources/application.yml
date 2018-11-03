@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: local
+my:
+  address: seoul
+---
+spring:
+  profiles: local
+my:
+  address: ilsan
+---
+spring:
+  profiles: dev
+
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <script th:src="@{/webjars/sockjs-client/1.0.2/sockjs.js}"></script>
+        <script th:src="@{/webjars/stomp-websocket/2.3.3/stomp.js}"></script>
+
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.1.0/css/bootstrap.min.css}"/>
+        <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/4.1.0/js/bootstrap.min.js}"></script>
+
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            var chatRoomId = /*[[${chatRoomId}]]*/ '';
+            /*]]>*/
+        </script>
+        <script src="/js/chatroom.js"></script>
+        <title>chat room</title>
+    </head>
+
+    <body>
+
+        <div class="jumbotron">
+            <h1>chat room</h1>
+        </div>
+
+        <div class="container">
+
+            <div class="col-sm-12 col-md-12">
+                <textarea cols="80" rows="15" id="chatArea" class="form-control"></textarea>
+            </div>
+            <div class="col-sm-12 col-md-12">
+                <input type="text" id="chatInput" class="form-control"/>
+                <input type="button" id="sendBtn" value="전송" class="btn btn-primary btn-small"/>
+            </div>
+
+        </div>
+    </body>
+</html>
