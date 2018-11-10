@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/bower_components/jquery/dist/jquery.js"></script>
+
+    <script>
+        $(function () {
+           $("#btn1").click(function () {
+               alert('btn1');
+           });
+
+            $("#btn2").click(function () {
+                var JSONObject= {
+                    "id" : 1,
+                    "title" : 'hello',
+                    "content" : 'world'
+                };
+                var jsonData = JSON.stringify( JSONObject );
+                $.ajax({
+                    url : '/api/test',
+                    method : 'post',
+                    data : jsonData,
+                    dataType: "json",
+                    contentType: "application/json",
+                    success : function (data) {
+                        alert('등록되었습니다.. OK');
+                        console.log(data);
+                    },
+                    error : function (err) {
+                        console.log(err.toString());
+                    }
+                });
+            }); // btn2 click
+
+            $("#btn3").click(function () {
+                $.ajax({
+                    url : '/api/test',
+                    method : 'put',
+                    data : {'title' : 'hello world'},
+                    success : function (data) {
+                        alert('등록되었습니다.. OK');
+                        console.log(data);
+                    },
+                    error : function (err) {
+                        console.log(err.toString());
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<input type="button" id="btn1" value="버튼1"><br>
+<input type="button" id="btn2" value="버튼2"><br>
+<input type="button" id="btn3" value="버튼3"><br>
+
+</body>
+</html>

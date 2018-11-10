@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+
+<th:block layout:fragment="html_head">
+    <title>회원가입폼</title>
+</th:block>
+
+<th:block layout:fragment="body_main">
+
+    <div class="jumbotron">
+        <h1>이미 소셜 계정으로 가입된 email입니다.</h1>
+        <p>이전에 소셜 계정으로 가입을 한 계정입니다. 해당 소셜 계정으로 로그인 하였습니다.</p>
+        <p><a th:href="@{/users/info}">회원정보보기</a> </p>
+    </div>
+</th:block>
+</html>

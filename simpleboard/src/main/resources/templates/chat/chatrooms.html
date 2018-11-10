@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+
+<th:block layout:fragment="html_head">
+    <title>대화방 목록보기</title>
+</th:block>
+
+<th:block layout:fragment="body_main">
+
+        <div class="jumbotron">
+            <h1>대화방 목록보기</h1>
+        </div>
+
+        <div class="container">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th width="10%">id</th>
+                    <th>제목</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${not #lists.isEmpty(list)}" th:each="chatRoom : ${list}">
+                    <td th:text="${chatRoom.id}"></td>
+                    <td><a th:href="@{'/chatrooms/' + ${chatRoom.id}}" th:text="${chatRoom.title}"></a> </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-2">
+                    <div class="dataTables_info" id="data_table_control_btn">
+                        <a class="btn btn-primary btn-middle" th:href="@{/chatrooms/createform}">방만들기</a>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- container -->
+
+</th:block>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+
+<th:block layout:fragment="html_head">
+    <script src="/js/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/js/bower_components/tui-code-snippet/dist/tui-code-snippet.js"></script>
+    <script src="/js/bower_components/markdown-it/dist/markdown-it.js"></script>
+    <script src="/js/bower_components/to-mark/dist/to-mark.js"></script>
+    <script src="/js/bower_components/codemirror/lib/codemirror.js"></script>
+    <script src="/js/bower_components/highlightjs/highlight.pack.js"></script>
+    <script src="/js/bower_components/squire-rte/build/squire-raw.js"></script>
+    <script src="/js/bower_components/tui-editor/dist/tui-editor-Editor-all.js"></script>
+    <link rel="stylesheet" href="/js/bower_components/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="/js/bower_components/highlightjs/styles/github.css">
+    <link rel="stylesheet" href="/js/bower_components/tui-editor/dist/tui-editor.css">
+    <link rel="stylesheet" href="/js/bower_components/tui-editor/dist/tui-editor-contents.css">
+
+    <title>방 만들기 폼</title>
+
+</th:block>
+
+<th:block layout:fragment="body_main">
+
+    <div class="jumbotron">
+        <h1>방만들기 폼</h1>
+    </div>
+
+    <div class="container">
+
+
+        <tbody>
+        <form method="post" th:action="@{/chatrooms}">
+            <tr>
+                <th>제목: </th>
+                <td><input type="text" placeholder="제목을 입력하세요." name="title" class="form-control"/></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" id="saveBtn" value="등록" class="btn btn-primary btn-small"/>
+                    <input type="reset" id="resetBtn" value="reset" class="btn btn-outline-dark btn-small"/>
+                    <a class="btn btn-outline-dark btn-small" th:href="@{/chatrooms}">목록보기</a>
+                </td>
+            </tr>
+        </form>
+        </tbody>
+
+    </div>
+</th:block>
+</html>

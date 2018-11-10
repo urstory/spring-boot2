@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+
+<th:block layout:fragment="html_head">
+    <title>회원가입폼</title>
+</th:block>
+
+<th:block layout:fragment="body_main">
+
+    <div class="jumbotron">
+        <h1>로그인 폼</h1>
+        <p></p>
+    </div>
+
+
+
+    <div class="container">
+        <form method="post" th:action="@{/users/login}"action="#">
+            <div class="form-group row">
+                <label for="id" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="id" name="id" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">로그인 유지</label>
+                <div class="col-sm-10">
+                    <input class="form-control form-check-input" type="checkbox" name="remember-me">
+                </div>
+            </div>
+
+            <div class="form-group row" th:if="${param.error != null}">
+                <label class="col-sm-2 col-form-label">오류</label>
+                <div class="col-sm-10">
+                    존재하지 않는 email이거나 암호가 틀렸습니다.
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                    <input type="hidden" name="loginRedirect" th:value="${loginRedirect}">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">소셜 로그인</label>
+                <div class="col-sm-10">
+                    <a th:href="@{/sign-in/facebook}">facebook login</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</th:block>
+</html>

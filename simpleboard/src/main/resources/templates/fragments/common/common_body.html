@@ -1,0 +1,57 @@
+<script>
+    $(document).ready(function(){
+        $('#navbarLoginform').submit(
+            function() {
+                if($('#navbarLoginId').val() == ''){
+                    alert('email을 입력해주세요.');
+                    return false;
+                }
+                if($('#navbarLoginPassword').val() == ''){
+                    alert('암호를 입력해주세요.');
+                    return false;
+                }
+            }
+        );
+    });
+</script>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin:24px 0;">
+    <a class="navbar-brand" th:href="@{/boards}">Simpleboard</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navb">
+
+        <ul class="navbar-nav mr-auto">
+            <!--
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="javascript:void(0)">Disabled</a>
+            </li>
+            -->
+        </ul>
+        <form id="navbarLoginform" sec:authorize="!isAuthenticated()" class="form-inline my-2 my-lg-0" method="post" th:action="@{/users/login}">
+            <input class="form-control mr-sm-2" type="text" name="id" id="navbarLoginId" placeholder="email"  autocomplete="off">
+            <input class="form-control mr-sm-2" type="password" name="password" id="navbarLoginPassword" placeholder="암호"  autocomplete="new-password">
+            <span class="navbar-text">로그인 유지</span> <input type="checkbox" class="form-control mr-sm-2" name="remember-me" />
+            <button class="form-control btn btn-success mr-sm-2" type="submit">로그인</button>
+            <input type="hidden" name="loginRedirect" th:value="${loginRedirect}">
+
+            <a  class="form-control btn btn-success mr-sm-2" th:href="@{/sign-in/facebook}">facebook login</a>
+
+            <a th:href="@{/users/joinform}" class="form-control btn btn-info mr-sm-2">회원가입</a>
+        </form>
+        <div sec:authorize="isAuthenticated()" class="my-2 my-lg-0">
+            <span class="navbar-text"><a th:href="@{/users/info}" th:text="${loginUser.name}"></a>님 환영합니다.</span>
+            <a th:href="@{/logout}" class="btn btn-success">로그아웃</a>
+        </div>
+    </div>
+</nav>
+
+<th:block layout:fragment="body_main"></th:block>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+
+<th:block layout:fragment="html_head">
+    <title>회원가입폼</title>
+</th:block>
+
+<th:block layout:fragment="body_main">
+
+    <div class="jumbotron">
+        <h1>회원 가입 폼</h1>
+        <p></p>
+    </div>
+
+
+
+    <div class="container">
+        <form method="post" th:action="@{/users/join}" th:object="${userJoinForm}" action="#">
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">이름</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="이름을 입력하세요." th:field="*{name}">
+                </div>
+                <div class="col-sm-5" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+            </div>
+            <div class="form-group row">
+                <label for="id" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-5">
+                    <input type="email" class="form-control" id="id" name="id" placeholder="Email을 입력학세요." th:field="*{email}" autocomplete="off">
+                </div>
+                <div class="col-sm-5" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="col-sm-2 col-form-label">암호</label>
+                <div class="col-sm-5">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="암호를 입력하세요." th:field="*{password}" autocomplete="new-password">
+                </div>
+                <div class="col-sm-5" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+            </div>
+            <div class="form-group row">
+                <label for="rePassword" class="col-sm-2 col-form-label">암호 확인</label>
+                <div class="col-sm-5">
+                    <input type="password" class="form-control" id="rePassword" name="rePassword" placeholder="암호를 입력하세요." th:field="*{rePassword}" autocomplete="new-password">
+                </div>
+                <div class="col-sm-5" th:if="${#fields.hasErrors('rePassword')}" th:errors="*{rePassword}"></div>
+            </div>
+
+            <div class="form-group row" th:if="${param.error != null}">
+                <label class="col-sm-2 col-form-label">오류</label>
+                <div class="col-sm-10">
+                    존재하지 않는 email이거나 암호가 틀렸습니다.
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">실행</button><button type="reset" class="btn">취소</button>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">소셜 가입 및 로그인</label>
+                <div class="col-sm-10">
+                    <a th:href="@{/sign-in/facebook}">facebook 가입 및 로그인</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</th:block>
+</html>
+

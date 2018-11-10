@@ -1,0 +1,37 @@
+version: '3'
+services:
+#  mysql:
+#   container_name: some-mysql
+#   image: mysql/mysql-server:5.7
+#   environment:
+#    MYSQL_DATABASE: test
+#    MYSQL_ROOT_PASSWORD: hellokoding
+#    MYSQL_ROOT_HOST: '%'
+#   ports:
+#   - "3306:3306"
+#   restart: always
+
+  app:
+    restart: always
+    image: docker.sunnyvale.co.kr:5000/simpleboard
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+    restart: always
+    volumes:
+    - /upload:/tmp
+    ports:
+    - "9090:8080"
+
+
+  nginx:
+   image: nginx:1.13
+   restart: always
+   ports:
+   - 80:80
+   - 443:443
+   volumes:
+   - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+   depends_on:
+    - app
+   links:
+    - app

@@ -1,0 +1,1 @@
+docker push docker.sunnyvale.co.kr:5000/simpleboard

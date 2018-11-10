@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+
+<th:block layout:fragment="html_head">
+    <title>게시판 목록보기</title>
+</th:block>
+
+<th:block layout:fragment="body_main">
+
+        <div class="jumbotron">
+            <h1>Simple 게시판</h1>
+            <p>Spring Boot 2.0 + JPA + QueryDSL + thymeleaf + maven ......</p>
+        </div>
+
+        <div class="container">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th width="10%">id</th>
+                    <th>제목</th>
+                    <th width="15%">작성자</th>
+                    <th width="10%">조회수</th>
+                    <th width="15%">작성일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${not #lists.isEmpty(list)}" th:each="board : ${list}">
+                    <td th:text="${board.id}"></td>
+                    <td><a th:href="@{'/boards/' + ${board.id}(page=${pager.thisPage}, searchStr=${pager.searchStr},searchType=${pager.searchType})}" th:text="${board.title}"></a> </td>
+                    <td th:text="${board.user.name}"></td>
+                    <td th:text="${board.readCount}"></td>
+                    <td th:text="${#temporals.format(board.regdate, 'yyyy/MM/dd HH:mm')}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-3">
+                    <div class="dataTables_info" id="data_table_info" role="status" aria-live="polite" th:text="'page : ' + ${pager.thisPage} + ' / ' + ${pager.totalPage}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                    <div class="dataTables_paginate paging_simple_numbers" id="data_table_paginate">
+                        <ul class="pagination">
+                            <li th:classappend="(${pager.thisPage == 1} ? ' disabled ' : '')" class="paginate_button page-item" id="data_table_previous">
+                                <a th:href="@{/boards(page=1, searchStr=${pager.searchStr},searchType=${pager.searchType})}"  aria-controls="data_table" data-dt-idx="0" tabindex="0" class="page-link">&lt;&lt;</a>
+                            </li>
+                            <li th:classappend="(${pager.prevPage != 0} ? ' ' : ' disabled ')" class="paginate_button page-item previous" id="data_table_previous">
+                                <a th:href="@{/boards(page=${pager.prevPage}, searchStr=${pager.searchStr},searchType=${pager.searchType})}" aria-controls="data_table" data-dt-idx="0" tabindex="0" class="page-link">이전</a>
+                            </li>
+                            <li th:each="i : ${#numbers.sequence( {pager.startPage}, {pager.endPage})}" th:classappend="(${pager.thisPage == i} ? ' active ' : '') + (${i > pager.totalPage} ? ' disabled ' : '')" class="paginate_button page-item ">
+                                <a th:href="@{/boards(page=${i}, searchStr=${pager.searchStr},searchType=${pager.searchType})}" aria-controls="data_table" data-dt-idx="2" tabindex="0" class="page-link" th:text="${i}"></a>
+                            </li>
+                            <li th:classappend="(${pager.nextPage == 0} ? ' disabled ' : '')" class="paginate_button page-item next" id="data_table_next">
+                                <a th:href="@{/boards(page=${pager.nextPage}, searchStr=${pager.searchStr},searchType=${pager.searchType})}" aria-controls="data_table" data-dt-idx="7" tabindex="0" class="page-link">이후</a>
+                            </li>
+                            <li th:classappend="(${pager.nextPage == 0} ? ' disabled ' : '')" class="paginate_button page-item" id="data_table_next">
+                                <a th:href="@{/boards(page=${pager.totalPage}, searchStr=${pager.searchStr},searchType=${pager.searchType})}"  aria-controls="data_table" data-dt-idx="0" tabindex="0" class="page-link">&gt;&gt;</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-2">
+                    <div class="dataTables_info" id="data_table_control_btn">
+                        <a class="btn btn-primary btn-middle" th:href="@{/boards/writeform}">글쓰기</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row  justify-content-center">
+                <div class="col-sm-12 col-md-6">
+                    <form class="form-inline my-2 my-lg-0" action="#" th:action="@{/boards}" method="get">
+                        <select class="form-control" name="searchType">
+                            <option value="title" th:selected="${pager.searchType == 'title'}">title</option>
+                            <option value="name" th:selected="${pager.searchType == 'name'}">name</option>
+                            <option value="content" th:selected="${pager.searchType == 'content'}">content</option>
+                        </select>
+
+                        <input class="form-control mr-sm-2" type="text" name="searchStr" placeholder="검색어를 입력하세요." th:value="${pager.searchStr}">
+                        <button class="btn btn-success my-2 my-sm-0" type="submit">검색</button>
+                    </form>
+                </div>
+            </div>
+        </div> <!-- container -->
+
+</th:block>
+</html>

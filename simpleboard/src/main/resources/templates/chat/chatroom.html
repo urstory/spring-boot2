@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+
+<th:block layout:fragment="html_head">
+    <script src="/js/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/js/bower_components/tui-code-snippet/dist/tui-code-snippet.js"></script>
+    <script src="/js/bower_components/markdown-it/dist/markdown-it.js"></script>
+    <script src="/js/bower_components/to-mark/dist/to-mark.js"></script>
+    <script src="/js/bower_components/codemirror/lib/codemirror.js"></script>
+    <script src="/js/bower_components/highlightjs/highlight.pack.js"></script>
+    <script src="/js/bower_components/squire-rte/build/squire-raw.js"></script>
+    <script src="/js/bower_components/tui-editor/dist/tui-editor-Editor-all.js"></script>
+    <link rel="stylesheet" href="/js/bower_components/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="/js/bower_components/highlightjs/styles/github.css">
+    <link rel="stylesheet" href="/js/bower_components/tui-editor/dist/tui-editor.css">
+    <link rel="stylesheet" href="/js/bower_components/tui-editor/dist/tui-editor-contents.css">
+
+    <script th:src="@{/webjars/sockjs-client/1.0.2/sockjs.js}"></script>
+    <script th:src="@{/webjars/stomp-websocket/2.3.3/stomp.js}"></script>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var chatRoomId = /*[[${chatRoom.id}]]*/ '';
+        /*]]>*/
+    </script>
+    <script src="/js/chatroom.js?v=0.2"></script>
+    <title th:text="${chatRoom.title}"></title>
+
+</th:block>
+
+<th:block layout:fragment="body_main">
+
+    <div class="jumbotron">
+        <h1 th:text="${chatRoom.title}"></h1>
+    </div>
+
+    <div class="container">
+
+        <div class="col-sm-12 col-md-12">
+            <textarea cols="80" rows="15" id="chatArea" class="form-control"></textarea>
+        </div>
+        <div class="col-sm-12 col-md-12">
+            <input type="text" id="chatInput" class="form-control"/>
+            <input type="button" id="sendBtn" value="전송" class="btn btn-primary btn-small"/>
+        </div>
+
+    </div>
+</th:block>
+</html>

@@ -1,0 +1,84 @@
+spring:
+  profiles:
+    active: local
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  thymeleaf:
+    cache: false
+    check-template: true
+    check-template-location: true
+    enabled: true
+    encoding: UTF-8
+    # excluded-view-names:
+    # mode: HTML5
+    prefix: classpath:/templates/
+    suffix: .html
+    # template-resolver-order:
+    # view-names:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    username: sa
+    password: sa
+    initialization-mode: always
+  h2:
+    console:
+      enabled: true
+#    http://localhost:8080/h2-console
+
+#  resources:
+#    static-locations: classpath:/resources/,classpath:/static/
+
+
+#spring:
+#  datasource:
+#    url: jdbc:h2:mem:mydb
+#    username: sa
+#    password:
+
+
+#spring:
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/helloboard?useUnicode=true&characterEncoding=utf8&useSSL=false
+#    username: fastcamp
+#    password: fastcamp
+
+
+# 반드시 / 로 끝내야 한다.
+file:
+  upload:
+    dir: /tmp/
+
+
+# 페이스북
+facebook:
+  client:
+     clientId: 1887006198284227
+     clientSecret: 595229d7231f930c0937b6bdd471e7ee
+     accessTokenUri: https://graph.facebook.com/oauth/access_token
+     userAuthorizationUri: https://www.facebook.com/dialog/oauth
+     tokenName: oauth_token
+     authenticationScheme: query
+     clientAuthenticationScheme: form
+     scope: email
+  resource:
+     userInfoUri: https://graph.facebook.com/me?fields=email,name,id
+
+
+my:
+  address: 192.168.1.100
+
+server:
+  port: 8080
+---
+spring:
+  profiles: local
+my:
+  address: 127.0.0.1
+---
+spring:
+  profiles: heroku
+my:
+  address: 192.168.1.120
